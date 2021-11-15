@@ -2,6 +2,12 @@ const allowCors = require('../src/utils/cors')
 const request = require('../src/utils/req')
 
 const handler = async (req, res) => {
+  const myIp = await axios({
+    method: 'get',
+    url: 'https://echo-api.vercel.app/api',
+  })
+  console.log('myIp', myIp)
+
   const { accessKey, secretKey } = req.body
 
   const result = await request({
