@@ -1,5 +1,6 @@
 const allowCors = require('../src/utils/cors')
 const request = require('../src/utils/req')
+const axios = require('axios')
 
 const handler = async (req, res) => {
   const myIp = await axios({
