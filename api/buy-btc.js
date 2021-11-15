@@ -10,9 +10,16 @@ const handler = async (req, res) => {
     body: {
       market: 'KRW-BTC',
       side: 'bid',
-      volume: '0.0001442',
-      price: '60000000.0',
-      ord_type: 'limit',
+
+      /* 지정가 */
+      // volume: '0.0001442',
+      // price: '60000000.0',
+      // ord_type: 'limit',
+
+      /* 시장가 매수 */
+      volume: null,
+      price: '10000',
+      ord_type: 'price',
     },
     accessKey,
     secretKey,
