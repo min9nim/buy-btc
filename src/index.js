@@ -1,6 +1,16 @@
 const express = require('express')
+const axios = require('axios')
+
 const app = express()
 const port = 80
+
+app.get('/my-ip', async (req, res) => {
+    const result = await axios({
+        method: 'get',
+        url: 'https://echo-api.vercel.app/api',
+    })
+    res.json(result.data)
+})
 
 app.post('/buy-btc', async (req, res) => {
     const { accessKey, secretKey, body } = req.body
