@@ -1,8 +1,12 @@
 const express = require('express')
 const axios = require('axios')
+const request = require('./utils/req')
+const bodyParser = require('body-parser')
 
 const app = express()
-const port = 80
+const port = 3000
+
+app.use(bodyParser.json())
 
 app.get('/my-ip', async (req, res) => {
     const result = await axios({
