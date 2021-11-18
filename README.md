@@ -35,7 +35,7 @@ request
   "secretKey": "xxx",
   "body": {
     "side": "bid",
-    "volumn": "0.00014",
+    "volume": "0.00014",
     "price": "72000000",
     "ord_type": "limit"
   }
