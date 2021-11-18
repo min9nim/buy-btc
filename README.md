@@ -1,5 +1,5 @@
 # buy-btc
-업비트 api 포팅
+업비트 주문하기 api 포팅
 
 ## Prerequisite
 1. 업비트 api 키 발급시 `주문하기` 권한 필수
