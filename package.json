@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vercel dev",
     "reformat": "prettier --write",
-    "test": "node src/test.js"
+    "start:local": "node src/index.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
