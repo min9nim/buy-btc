@@ -3,6 +3,7 @@ const { v4: uuidv4 } = require('uuid')
 const crypto = require('crypto')
 const sign = require('jsonwebtoken').sign
 const queryEncode = require('querystring').encode
+const FormData = require('form-data');
 
 const server_url = 'https://api.upbit.com'
 
@@ -21,11 +22,18 @@ module.exports = async function ({ accessKey, secretKey, body, path, method }) {
   }
 
   const token = sign(payload, secretKey)
-  const result = await axios({
-    method,
-    url: server_url + path + (body ? '?' + query : ''),
-    headers: { Authorization: `Bearer ${token}` },
-  })
+
+
+  const form = new FormData();
+  form.append('url', server_url + path + (body ? '?' + query : ''));
+  form.append('header', `Authorization: Bearer ${token}`);
+  const result = await axios.post('http://maduser.byus.net/req.php', form, { headers: form.getHeaders() })
+
+  // const result = await axios({
+  //   method,
+  //   url: server_url + path + (body ? '?' + query : ''),
+  //   headers: { Authorization: `Bearer ${token}` },
+  // })
 
   return result.data
 }
