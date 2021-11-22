@@ -67,22 +67,18 @@ function Curl($url, $post_data, &$http_status, &$header = null) {
     return $body;
 }
 
-
-
-
 $url = $_POST["url"];
-//
 $data = array(
   // "method" => $_POST["method"],
   // "url" => $_POST["url"],
   // "header" => $_POST["header"],
 );
 //
-// $json = json_encode($data);
+$json = json_encode($data);
 
 $ret = Curl($url, $json, $http_status);
 
-var_dump($ret);
-
-
+// var_dump($ret);
+header('Content-type: application/json');
+echo $ret
 ?>
