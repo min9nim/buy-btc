@@ -12,6 +12,10 @@ const handler = async (req, res) => {
     state = 'done',
   } = req.query
 
+  if(!accessKey || !secretKey){
+    res.json({message: 'accessKey & secretKey is required'})
+  }
+
   const result = await request({
     method: 'get',
     path: '/v1/orders',
