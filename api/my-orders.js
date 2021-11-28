@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     secretKey,
     limit = 100,
     page = 1,
-    order_by = 'desc',
+    orderBy = 'desc',
     market = 'KRW-BTC',
     state = 'done',
   } = req.query
@@ -24,7 +24,7 @@ const handler = async (req, res) => {
       state,
       page,
       limit,
-      order_by,
+      order_by: orderBy,
     },
     accessKey,
     secretKey,
