@@ -24,16 +24,20 @@ module.exports = async function ({ accessKey, secretKey, body, path, method }) {
   const token = sign(payload, secretKey)
 
 
-  const form = new FormData();
-  form.append('url', server_url + path + (body ? '?' + query : ''));
-  form.append('header', `Authorization: Bearer ${token}`);
-  const result = await axios.post('http://maduser.byus.net/req.php', form, { headers: form.getHeaders() })
+  if(method === 'get'){
+    const result = await axios({
+      method,
+      url: server_url + path + (body ? '?' + query : ''),
+      headers: { Authorization: `Bearer ${token}` },
+    })
 
-  // const result = await axios({
-  //   method,
-  //   url: server_url + path + (body ? '?' + query : ''),
-  //   headers: { Authorization: `Bearer ${token}` },
-  // })
+    return result.data
+  }else{
+    const form = new FormData();
+    form.append('url', server_url + path + (body ? '?' + query : ''));
+    form.append('header', `Authorization: Bearer ${token}`);
+    const result = await axios.post('http://maduser.byus.net/req.php', form, { headers: form.getHeaders() })
 
-  return result.data
+    return result.data
+  }
 }
