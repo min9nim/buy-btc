@@ -13,7 +13,17 @@ const handler = async (req, res) => {
     .get(`https://api.upbit.com/v1/candles/days?market=${market}&count=1`)
     .then(result => result.data[0].trade_price)
 
-  console.log('currentPrice:', currentPrice)
+  const BTC_UNIT = 100000000
+  const biddingPrice = currentPrice + Number(body.diff || 0)
+  const btcVolume =
+    Math.floor((body.krw_volume / biddingPrice) * BTC_UNIT) / BTC_UNIT
+
+  console.log('xxx', {
+    krwVolume: Number(body.krw_volume),
+    currentPrice,
+    biddingPrice,
+    btcVolume,
+  })
 
   const result = await request({
     method: 'post',
@@ -23,8 +33,8 @@ const handler = async (req, res) => {
       side: 'bid',
 
       /* 지정가 */
-      volume: '0.00015',
-      price: String(currentPrice - Number(body.diff || 0)),
+      volume: String(btcVolume),
+      price: String(biddingPrice),
       ord_type: 'limit',
 
       /* 시장가 매수 */
