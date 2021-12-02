@@ -16,21 +16,24 @@ const handler = async (req, res) => {
     res.json({message: 'accessKey & secretKey is required'})
   }
 
-  const result = await request({
-    method: 'get',
-    path: '/v1/orders',
-    body: {
-      market,
-      state,
-      page,
-      limit,
-      order_by: orderBy,
-    },
-    accessKey,
-    secretKey,
-  })
-
-  res.json(result)
+  try{
+    const result = await request({
+      method: 'get',
+      path: '/v1/orders',
+      body: {
+        market,
+        state,
+        page,
+        limit,
+        order_by: orderBy,
+      },
+      accessKey,
+      secretKey,
+    })
+    res.json(result)
+  }catch (e){
+    res.json(e)
+  }
 }
 
 module.exports = allowCors(handler)
