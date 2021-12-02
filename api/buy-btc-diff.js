@@ -7,8 +7,10 @@ const handler = async (req, res) => {
   const { accessKey, secretKey, body } =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
+  const market = body.market || 'KRW-BTC'
+
   const currentPrice = await axios
-    .get(`https://api.upbit.com/v1/candles/days?market=KRW-BTC&count=1`)
+    .get(`https://api.upbit.com/v1/candles/days?market=${market}&count=1`)
     .then(result => result.data[0].trade_price)
 
   console.log('currentPrice:', currentPrice)
@@ -17,7 +19,7 @@ const handler = async (req, res) => {
     method: 'post',
     path: '/v1/orders',
     body: {
-      market: 'KRW-BTC',
+      market,
       side: 'bid',
 
       /* 지정가 */
