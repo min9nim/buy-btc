@@ -32,7 +32,7 @@ const handler = async (req, res) => {
     })
     res.json(result)
   }catch (e){
-    res.json(e)
+    res.status(401).json(e)
   }
 }
 
