@@ -1,4 +1,5 @@
 const allowCors = require('../src/utils/cors')
+const handleError = require('../src/utils/handle-error')
 const axios = require('axios')
 
 const handler = async (req, res) => {
@@ -9,4 +10,4 @@ const handler = async (req, res) => {
     res.json(result.data)
 }
 
-module.exports = allowCors(handler)
+module.exports = allowCors(handleError(handler))

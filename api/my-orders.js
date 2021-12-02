@@ -1,4 +1,5 @@
 const allowCors = require('../src/utils/cors')
+const handleError = require('../src/utils/handle-error')
 const request = require('../src/utils/req')
 
 const handler = async (req, res) => {
@@ -16,24 +17,20 @@ const handler = async (req, res) => {
     res.json({message: 'accessKey & secretKey is required'})
   }
 
-  try{
-    const result = await request({
-      method: 'get',
-      path: '/v1/orders',
-      body: {
-        market,
-        state,
-        page,
-        limit,
-        order_by: orderBy,
-      },
-      accessKey,
-      secretKey,
-    })
-    res.json(result)
-  }catch (e){
-    res.status(401).json(e)
-  }
+  const result = await request({
+    method: 'get',
+    path: '/v1/orders',
+    body: {
+      market,
+      state,
+      page,
+      limit,
+      order_by: orderBy,
+    },
+    accessKey,
+    secretKey,
+  })
+  res.json(result)
 }
 
-module.exports = allowCors(handler)
+module.exports = allowCors(handleError(handler))
