@@ -22,7 +22,8 @@ const handler = async (req, res) => {
     path: '/v1/orders',
     body: {
       market,
-      state,
+      // state,
+      states: ['done', 'cancel'],
       page,
       limit,
       order_by: orderBy,
