@@ -92,6 +92,13 @@ request
 
 ## 비트코인 fear & greed 지수 반영 매수
 
+<a href="https://alternative.me/crypto/">
+    <img style="width: 300px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
+<a>
+
+<br/>
+<br/>
+
 url
 ```
 POST https://buy-btc.vercel.app/api/buy-btc-fear-greed-index
@@ -99,16 +106,11 @@ POST https://buy-btc.vercel.app/api/buy-btc-fear-greed-index
 
 예시) 아래 조건에 따라 시장가 보다 10만원 적은 가격에 지정가 매수 주문.
 
-<a href="https://alternative.me/crypto/" style="float: left;">
-    <img style="width: 300px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
-<a>
-
 fear & greed 지수가
 1. 20 이하면 3만원어치 매수
 1. 50 이하면 2만원어치 매수
 1. 70 이하면 1만원어치 매수
 1. 70 초과시 매수 안함
-
 
 
 
