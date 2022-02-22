@@ -88,5 +88,42 @@ request
 ```
 
 
+<br/>
+
+## 비트코인 fear & greed 지수 반영 매수
+
+url
+```
+POST https://buy-btc.vercel.app/api/buy-btc-fear-greed-index
+```
+
+예시) fear & greed 지수의 아래 조건에 따라 시장가 보다 10만원 적은 가격에 지정가 매수 주문
+1. 20 이하면 3만원어치 매수
+1. 50 이하면 2만원어치 매수
+1. 70 이하면 1만원어치 매수
+1. 70초과시 매수 안함
+
+Fear & Greed Index) https://alternative.me/crypto/
+
+request
+```json
+{
+  "accessKey": "xxx",
+  "secretKey": "xxx",
+  "body": {
+    "~20": "30000",
+    "~50": "20000",
+    "~70": "10000",
+    "~100": "0",
+    "diff": "-100000"
+  }
+}
+```
+
+<br/>
+
 ## Ref
 https://docs.upbit.com/reference/%EC%A3%BC%EB%AC%B8%ED%95%98%EA%B8%B0
+
+
+
