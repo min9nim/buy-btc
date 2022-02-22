@@ -93,7 +93,7 @@ request
 ## 비트코인 fear & greed 지수 반영 매수
 
 <a href="https://alternative.me/crypto/">
-    <img style="width: 300px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
+    <img style="width: 400px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
 <a>
 
 <br/>
