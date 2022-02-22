@@ -27,7 +27,7 @@ const handler = async (req, res) => {
   let krw_volume
   const bidPrices = Object.entries(body)
   for ([key, value] of bidPrices) {
-    if (key.startsWith('~') && fgIndex < Number(key.replace('~', ''))) {
+    if (key.startsWith('~') && fgIndex <= Number(key.replace('~', ''))) {
       krw_volume = Number(value)
       break
     }
