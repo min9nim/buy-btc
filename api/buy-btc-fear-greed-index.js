@@ -41,13 +41,13 @@ const handler = async (req, res) => {
   const btcVolume =
     Math.floor((krw_volume / biddingPrice) * BTC_UNIT) / BTC_UNIT
 
-  console.log('xxx', {
+  const param = {
     fgIndex,
     krwVolume: Number(krw_volume),
     currentPrice,
     biddingPrice,
     btcVolume,
-  })
+  }
 
   const result = await request({
     method: 'post',
@@ -72,7 +72,7 @@ const handler = async (req, res) => {
     secretKey,
   })
 
-  res.json(result)
+  res.json({param, result})
 }
 
 module.exports = allowCors(handleError(handler))
