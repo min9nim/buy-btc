@@ -65,7 +65,7 @@ request
   "accessKey": "xxx",
   "secretKey": "xxx",
   "body": {
-   "side": "bid",
+    "side": "bid",
     "krw_volume": "50000",
     "diff": "-10000"
   }
@@ -80,7 +80,7 @@ request
   "accessKey": "xxx",
   "secretKey": "xxx",
   "body": {
-   "side": "ask",
+    "side": "ask",
     "krw_volume": "30000",
     "diff": "20000"
   }
