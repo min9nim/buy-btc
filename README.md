@@ -105,7 +105,7 @@ fear & greed 지수가
 1. 70 이하면 1만원어치 매수
 1. 70 초과시 매수 안함
 
-<a href="https://alternative.me/crypto/"><img src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" /><a>
+<a href="https://alternative.me/crypto/"><img style="width: 200px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" /><a>
 
 
 request
