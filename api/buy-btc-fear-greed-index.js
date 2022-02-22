@@ -14,7 +14,7 @@ const handler = async (req, res) => {
     .then(result => result.data[0].trade_price)
 
   const fgIndex = await axios({
-    method: 'post',
+    method: 'get',
     url: 'https://alternative.me/api/crypto/fear-and-greed-index/history',
     data: { days: 1 },
   }).then(res => res.data.data.datasets[0].data[0])
