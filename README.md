@@ -55,7 +55,7 @@ request
 
 url
 ```
-https://buy-btc.vercel.app/api/buy-btc-diff
+POST https://buy-btc.vercel.app/api/buy-btc-diff
 ```
 
 예시1) 시장가보다 1만원 저렴하게 5만원어치 지정가 매수
