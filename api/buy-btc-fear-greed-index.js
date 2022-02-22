@@ -49,30 +49,28 @@ const handler = async (req, res) => {
     btcVolume,
   })
 
-  const result = {}
+  const result = await request({
+    method: 'post',
+    path: '/v1/orders',
+    body: {
+      market,
+      side: 'bid',
 
-  // const result = await request({
-  //   method: 'post',
-  //   path: '/v1/orders',
-  //   body: {
-  //     market,
-  //     side: 'bid',
-  //
-  //     /* 지정가 */
-  //     volume: String(btcVolume),
-  //     price: String(biddingPrice),
-  //     ord_type: 'limit',
-  //
-  //     /* 시장가 매수 */
-  //     // volume: null,
-  //     // price: '10000',
-  //     // ord_type: 'price',
-  //
-  //     ...body,
-  //   },
-  //   accessKey,
-  //   secretKey,
-  // })
+      /* 지정가 */
+      volume: String(btcVolume),
+      price: String(biddingPrice),
+      ord_type: 'limit',
+
+      /* 시장가 매수 */
+      // volume: null,
+      // price: '10000',
+      // ord_type: 'price',
+
+      ...body,
+    },
+    accessKey,
+    secretKey,
+  })
 
   res.json(result)
 }
