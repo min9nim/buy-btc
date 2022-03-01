@@ -34,7 +34,8 @@ const handler = async (req, res) => {
   }
 
   if(!krw_volume){
-    throw Error('krw_volume is not defined')
+    res.json({message: 'krw_volume is falsy'})
+    return
   }
 
   const biddingPrice = currentPrice + Number(body.diff || 0)
