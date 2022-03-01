@@ -95,6 +95,7 @@ request
 <a href="https://alternative.me/crypto/">
     <img style="width: 400px;" src="https://alternative.me/crypto/fear-and-greed-index.png" alt="Latest Crypto Fear & Greed Index" />
 <a>
+> fear & greed 지수는 매일 09시에 업데이트.
 
 <br/>
 <br/>
