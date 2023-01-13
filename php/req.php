@@ -24,8 +24,10 @@ function Curl($url, $post_data, &$http_status, &$header = null) {
     curl_setopt($ch, CURLOPT_URL, $url);
 
     // post_data
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    if($_POST["method"] === 'post'){
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_data);
+    }
 
     if (!is_null($header)) {
         curl_setopt($ch, CURLOPT_HEADER, true);
