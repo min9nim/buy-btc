@@ -24,6 +24,7 @@ module.exports = async function ({ accessKey, secretKey, body, path, method }) {
   const token = sign(payload, secretKey)
 
   const form = new FormData()
+  form.append('method', method)
   form.append('url', server_url + path + (body ? '?' + query : ''))
   form.append('header', `Authorization: Bearer ${token}`)
   const result = await axios.post('http://maduser.byus.net/req.php', form, {
