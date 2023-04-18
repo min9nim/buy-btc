@@ -14,7 +14,7 @@ args = parser.parse_args()
 api_key = args.api_key
 api_secret = args.api_secret
 
-print('==== args ====')
+print('\n==== args ====')
 print('key: ' + api_key)
 print('secret: ' + api_secret)
 
@@ -44,7 +44,7 @@ def kraken_request(endpoint, data, api_key, api_secret):
     # Step 5: Send request
     url = 'https://api.kraken.com/0/private/' + endpoint
 
-    print("=== INPUT ===")
+    print("\n=== INPUT ===")
     print(url)
     print(headers)
     print(data)
@@ -72,7 +72,7 @@ def buy_btc(api_key, api_secret, amount):
     }
     response = kraken_request('AddOrder', data, api_key, api_secret)
 
-    print("=== OUTPUT ===")
+    print("\n=== OUTPUT ===")
     print(response)
 
     return response['result']['txid']
