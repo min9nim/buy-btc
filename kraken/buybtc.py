@@ -67,7 +67,7 @@ def buy_btc(api_key, api_secret, amount):
         'type': 'buy',
         'ordertype': 'limit',
         'price': last_trade_price,
-        'volume': amount,
+        'volume': amount / last_trade_price,
         'oflags': 'fciq'
     }
     response = kraken_request('AddOrder', data, api_key, api_secret)
