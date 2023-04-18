@@ -14,6 +14,10 @@ args = parser.parse_args()
 api_key = args.api_key
 api_secret = args.api_secret
 
+print('==== args ====')
+print('key: ' + api_key)
+print('secret: ' + api_secret)
+
 
 def kraken_request(endpoint, data, api_key, api_secret):
     # Step 1: Generate nonce
