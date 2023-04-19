@@ -14,6 +14,7 @@ args = parser.parse_args()
 api_key = args.api_key
 api_secret = args.api_secret
 
+print('\n' + time.strftime('%Y.%m.%d %H:%M:%S'))
 print('\n==== args ====')
 print('key: ' + api_key)
 print('secret: ' + api_secret)
