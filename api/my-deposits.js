@@ -33,7 +33,7 @@ const handler = async (req, res) => {
     .filter(item => item.state === 'ACCEPTED')
     .reduce((acc, item) => acc + Number(item.amount), 0)
 
-  res.json({ total_amount, result })
+  res.json({ total_amount: total_amount.toLocaleString('ko-KR'), result })
 }
 
 module.exports = allowCors(handleError(handler))
