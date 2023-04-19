@@ -12,8 +12,8 @@ const handler = async (req, res) => {
     currency = 'KRW',
   } = req.query
 
-  if(!accessKey || !secretKey){
-    res.json({message: 'accessKey & secretKey is required'})
+  if (!accessKey || !secretKey) {
+    res.json({ message: 'accessKey & secretKey is required' })
   }
 
   const result = await request({
@@ -28,7 +28,12 @@ const handler = async (req, res) => {
     accessKey,
     secretKey,
   })
-  res.json(result)
+
+  const total_amount = result
+    .filter(item => item.state === 'ACCEPTED')
+    .reduce((acc, item) => acc + Number(item.amount), 0)
+
+  res.json({ total_amount, result })
 }
 
 module.exports = allowCors(handleError(handler))
