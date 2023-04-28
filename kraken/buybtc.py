@@ -54,12 +54,13 @@ def kraken_request(endpoint, data, api_key, api_secret):
     return response.json()
 
 
-def buy_btc(api_key, api_secret, amount):
+def buy_btc(api_key, api_secret, amount, diff):
     # Step 1: Get current price
     response = requests.get(
         'https://api.kraken.com/0/public/Ticker?pair='+pair)
     response_json = response.json()
     last_trade_price = float(response_json['result']['XXBTZUSD']['c'][0])
+    price = last_trade_price + diff
 
     # Step 2: Place buy order
     data = {
@@ -67,14 +68,15 @@ def buy_btc(api_key, api_secret, amount):
         'pair': pair,
         'type': 'buy',
         'ordertype': 'limit',
-        'price': last_trade_price,
-        'volume': round(amount / last_trade_price, 8),
+        'price': price,
+        'volume': round(amount / price, 8),
     }
     return kraken_request('AddOrder', data, api_key, api_secret)
 
 
 amount = 10
-result = buy_btc(api_key, api_secret, amount)
+diff = -3
+result = buy_btc(api_key, api_secret, amount, diff)
 print('\n==== OUTPUT ====')
 print('Bought {amount} BTC.'.format(amount=amount))
 print(result)
