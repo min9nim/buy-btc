@@ -23,8 +23,8 @@ print('diff: ' + args.diff)
 
 api_key = args.api_key
 api_secret = args.api_secret
-amount = int(args.amount)
-diff = int(args.diff)
+amount = float(args.amount)
+diff = float(args.diff)
 
 pair = 'XBTUSD'
 
