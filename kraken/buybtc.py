@@ -11,19 +11,20 @@ parser.add_argument('--api_key', help='Kraken API key')
 parser.add_argument('--api_secret', help='Kraken API secret')
 parser.add_argument('--amount', help='dolla amount')
 parser.add_argument('--diff', help='diff on current price')
+
 args = parser.parse_args()
+
+print('\n' + time.strftime('%Y.%m.%d %H:%M:%S'))
+print('\n==== args ====')
+print('key: ' + args.api_key)
+print('secret: ' + args.api_secret)
+print('amount: ' + args.amount)
+print('diff: ' + args.diff)
 
 api_key = args.api_key
 api_secret = args.api_secret
 amount = int(args.amount)
 diff = int(args.diff)
-
-print('\n' + time.strftime('%Y.%m.%d %H:%M:%S'))
-print('\n==== args ====')
-print('key: ' + api_key)
-print('secret: ' + api_secret)
-print('amount: ' + amount)
-print('diff: ' + diff)
 
 pair = 'XBTUSD'
 
