@@ -76,7 +76,7 @@ def buy_btc(api_key, api_secret, amount, diff):
         'pair': pair,
         'type': 'buy',
         'ordertype': 'limit',
-        'price': price,
+        'price': round(price, 2),
         'volume': round(amount / price, 8),
     }
     return kraken_request('AddOrder', data, api_key, api_secret)
