@@ -15,8 +15,8 @@ args = parser.parse_args()
 
 api_key = args.api_key
 api_secret = args.api_secret
-amount = args.amount
-diff = args.diff
+amount = int(args.amount)
+diff = int(args.diff)
 
 print('\n' + time.strftime('%Y.%m.%d %H:%M:%S'))
 print('\n==== args ====')
