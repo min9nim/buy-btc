@@ -9,15 +9,21 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--api_key', help='Kraken API key')
 parser.add_argument('--api_secret', help='Kraken API secret')
+parser.add_argument('--amount', help='dolla amount')
+parser.add_argument('--diff', help='diff on current price')
 args = parser.parse_args()
 
 api_key = args.api_key
 api_secret = args.api_secret
+amount = args.amount
+diff = args.diff
 
 print('\n' + time.strftime('%Y.%m.%d %H:%M:%S'))
 print('\n==== args ====')
 print('key: ' + api_key)
 print('secret: ' + api_secret)
+print('amount: ' + amount)
+print('diff: ' + diff)
 
 pair = 'XBTUSD'
 
@@ -75,8 +81,6 @@ def buy_btc(api_key, api_secret, amount, diff):
     return kraken_request('AddOrder', data, api_key, api_secret)
 
 
-amount = 10
-diff = -3
 result = buy_btc(api_key, api_secret, amount, diff)
 print('\n==== OUTPUT ====')
 print('Bought {amount} BTC.'.format(amount=amount))
