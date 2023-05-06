@@ -84,5 +84,6 @@ def buy_btc(api_key, api_secret, amount, diff):
 
 result = buy_btc(api_key, api_secret, amount, diff)
 print('\n==== OUTPUT ====')
-print('Bought ${amount}\n\n'.format(amount=amount))
+print('Bought ${amount}'.format(amount=amount))
 print(result)
+print('\n\n\n')
