@@ -20,13 +20,14 @@ const handler = async (req, res) => {
   const volume = (amount / price).toFixed(8)
 
   const param = {
-    amount,
+    market,
+    usd_volume: amount,
     diff,
+    last_trade_price,
+    bidding_price: price,
+    volume,
     accessKey,
     secretKey,
-    last_trade_price,
-    price,
-    volume,
   }
 
   const result = await kraken.api('AddOrder', {
