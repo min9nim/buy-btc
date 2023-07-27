@@ -8,8 +8,8 @@ const handler = async (req, res) => {
 
   const kraken = new KrakenClient(accessKey, secretKey)
 
-  const diff = body.diff
-  const amount = body.usd_volume
+  const diff = Number(body.diff)
+  const amount = Number(body.usd_volume)
   const market = body.market || 'XBTUSD'
 
   const last_trade_price = await kraken
