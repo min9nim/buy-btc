@@ -16,7 +16,7 @@ const handler = async (req, res) => {
     .api('Ticker', { pair: 'XXBTZUSD' })
     .then(res => res.result.XXBTZUSD.c[0])
 
-  const price = (Number(last_trade_price) + body.diff || 0).toFixed(2)
+  const price = (Number(last_trade_price) + diff || 0).toFixed(2)
   const volume = (amount / price).toFixed(8)
 
   const param = {
