@@ -45,7 +45,7 @@ const handler = async (req, res) => {
     path: '/v1/orders',
     body: {
       market,
-      side: body.side ?? 'bid',
+      side: 'bid',
 
       /* 지정가 */
       volume: String(btcVolume),
