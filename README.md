@@ -185,8 +185,9 @@ POST https://buy-btc.vercel.app/api/buy-btc-kraken
 $25k 이하면 $50 매수<br/>
 $27k 이하면 $30 매수<br/>
 해당 사항 없으면 기본 $10 매수<br/>
+(diff 는 $10 만큼 적은 금액으로 매수 주문)
 
-request
+request payload
 ```json
 {
   "accessKey": "xxx",
