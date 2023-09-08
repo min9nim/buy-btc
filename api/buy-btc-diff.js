@@ -4,7 +4,7 @@ const handleError = require('../src/utils/handle-error')
 const axios = require('axios')
 
 const handler = async (req, res) => {
-  const { accessKey, secretKey, body } =
+  const {accessKey, secretKey, body} =
     typeof req.body === 'string' ? JSON.parse(req.body) : req.body
 
   const market = body.market || 'KRW-BTC'
@@ -15,11 +15,26 @@ const handler = async (req, res) => {
 
   const BTC_UNIT = 100000000
   const biddingPrice = currentPrice + Number(body.diff || 0)
+  let krw_volume = body.krw_volume
+  const bidPrices = Object.entries(body)
+  for ([key, value] of bidPrices) {
+    if (key.startsWith('~') && currentPrice <= Number(key.replace('~', ''))) {
+      krw_volume = Number(value)
+      break
+    }
+  }
+
+  if (!krw_volume) {
+    res.json({message: 'krw_volume is falsy'})
+    return
+  }
+
+
   const btcVolume =
-    Math.floor((body.krw_volume / biddingPrice) * BTC_UNIT) / BTC_UNIT
+    Math.floor((krw_volume / biddingPrice) * BTC_UNIT) / BTC_UNIT
 
   const param = {
-    krwVolume: Number(body.krw_volume),
+    krwVolume: Number(krw_volume),
     currentPrice,
     biddingPrice,
     btcVolume,
