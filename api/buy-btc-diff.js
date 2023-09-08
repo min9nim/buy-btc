@@ -15,7 +15,7 @@ const handler = async (req, res) => {
 
   const BTC_UNIT = 100000000
   const biddingPrice = currentPrice + Number(body.diff || 0)
-  let krw_volume = body.krw_volume
+  let krw_volume = Number(body.krw_volume)
   const bidPrices = Object.entries(body)
   for ([key, value] of bidPrices) {
     if (key.startsWith('~') && currentPrice <= Number(key.replace('~', ''))) {
