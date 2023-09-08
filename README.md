@@ -171,3 +171,31 @@ https://docs.upbit.com/reference/%EC%A3%BC%EB%AC%B8%ED%95%98%EA%B8%B0
 
 
 
+# 크라켄 거래소에서 자동매수
+
+endpoint
+```
+POST https://buy-btc.vercel.app/api/buy-btc-kraken
+```
+
+예시) 비트코인 가격이,<br/>
+$25k 이하면 $50 매수<br/>
+$27k 이하면 $30 매수<br/>
+해당 사항 없으면 기본 $10 매수<br/>
+
+request
+```json
+{
+  "accessKey": "xxx",
+  "secretKey": "xxx",
+  "body": {
+    "usd_volume": "10",
+    "~25000": "50",
+    "~27000": "30",
+    "diff": "-10"
+  }
+}
+```
+
+
+
