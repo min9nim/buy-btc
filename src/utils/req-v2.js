@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid')
 const crypto = require('crypto')
 const sign = require('jsonwebtoken').sign
 const queryEncode = require('querystring').encode
-const FormData = require('form-data')
 
 const server_url = 'https://api.upbit.com'
 
@@ -27,7 +26,9 @@ module.exports = async function ({ accessKey, secretKey, body, path, method }) {
     method,
     url: server_url + path,
     body,
-    auth: `Authorization: Bearer ${token}`,
+    auth: {
+      Authorization: `Bearer ${token}`,
+    },
   })
 
   return result.data
