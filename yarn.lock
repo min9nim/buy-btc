@@ -129,8 +129,10 @@ __metadata:
   dependencies:
     axios: ^0.24.0
     crypto: ^1.0.1
+    dayjs: ^1.11.10
     express: ^4.17.1
     form-data: ^4.0.0
+    if-logger: ^0.12.5
     jsonwebtoken: ^8.5.1
     kraken-api: ^1.0.1
     prettier: ^2.0.5
@@ -230,6 +232,13 @@ __metadata:
   version: 1.0.1
   resolution: "crypto@npm:1.0.1"
   checksum: 087fe3165bd94c333a49e6ed66a0193911f63eac38a24f379b3001a5fe260a59c413646e53a0f67875ba13902b2686d81dc703cb2c147a4ec727dcdc04e5645e
+  languageName: node
+  linkType: hard
+
+"dayjs@npm:^1.11.10":
+  version: 1.11.10
+  resolution: "dayjs@npm:1.11.10"
+  checksum: a6b5a3813b8884f5cd557e2e6b7fa569f4c5d0c97aca9558e38534af4f2d60daafd3ff8c2000fed3435cfcec9e805bcebd99f90130c6d1c5ef524084ced588c4
   languageName: node
   linkType: hard
 
@@ -532,6 +541,13 @@ __metadata:
   dependencies:
     safer-buffer: ">= 2.1.2 < 3"
   checksum: bd9f120f5a5b306f0bc0b9ae1edeb1577161503f5f8252a20f1a9e56ef8775c9959fd01c55f2d3a39d9a8abaf3e30c1abeb1895f367dcbbe0a8fd1c9ca01c4f6
+  languageName: node
+  linkType: hard
+
+"if-logger@npm:^0.12.5":
+  version: 0.12.5
+  resolution: "if-logger@npm:0.12.5"
+  checksum: d9c432d2e69242e6d13b4c298acec65f5bafdf21070a99d7c810cbc31bc01e536770dfc6879ec8e032054b67a286ad38bcbcf34ad136a336645a6ac5746e76dd
   languageName: node
   linkType: hard
 

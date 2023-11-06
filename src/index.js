@@ -2,6 +2,14 @@ const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser')
 
+const { default: createLogger, simpleFormat } = require('if-logger')
+const dayjs = require('dayjs')
+
+const logger = createLogger({
+  format: simpleFormat,
+  tags: [() => dayjs().format('YYYY-MM-DD HH:mm:ss')],
+})
+
 const app = express()
 const port = 3456
 
@@ -18,7 +26,7 @@ app.get('/my-ip', async (req, res) => {
 app.post('/upbit-proxy', async (req, res) => {
   const { method, url, body, auth } = req.body
 
-  console.log(new Date(), { method, url, body, auth })
+  logger.log(new Date(), { method, url, body, auth })
 
   const result = await axios({
     method,
