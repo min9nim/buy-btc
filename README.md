@@ -221,4 +221,4 @@ request payload
 
 - 새로운 서버 ip: `115.140.124.99`
 - 지원 가능 api `POST https://buy-btc.vercel.app/api/buy-btc-diff-v2`
-  - 나머지 api 는 모두 지원 종료 예정
+  - 나머지 api 는 모두 23.11.17 이후 지원 종료 예정
