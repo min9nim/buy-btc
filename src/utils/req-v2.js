@@ -22,7 +22,7 @@ module.exports = async function ({ accessKey, secretKey, body, path, method }) {
 
   const token = sign(payload, secretKey)
 
-  const result = await axios.post('http://115.140.124.99/upbit-proxy', {
+  const result = await axios.post('http://115.140.124.99:3456/upbit-proxy', {
     method,
     url: server_url + path,
     body,

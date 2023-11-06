@@ -1,6 +1,5 @@
 const express = require('express')
 const axios = require('axios')
-const request = require('./utils/req')
 const bodyParser = require('body-parser')
 
 const app = express()
@@ -18,6 +17,8 @@ app.get('/my-ip', async (req, res) => {
 
 app.post('/upbit-proxy', async (req, res) => {
   const { method, url, body, auth } = req.body
+
+  console.log(new Date(), { method, url, body, auth })
 
   const result = await axios({
     method,
