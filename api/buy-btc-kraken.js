@@ -9,7 +9,7 @@ const handler = async (req, res) => {
   const kraken = new KrakenClient(accessKey, secretKey)
 
   const diff = Number(body.diff)
-  const amount = Number(body.usd_volume)
+  let amount = Number(body.usd_volume)
   const market = body.market || 'XBTUSD'
 
   const last_trade_price = await kraken
@@ -17,6 +17,18 @@ const handler = async (req, res) => {
     .then(res => res.result.XXBTZUSD.c[0])
 
   const price = (Number(last_trade_price) + diff || 0).toFixed(2)
+  const bidPrices = Object.entries(body)
+  for ([key, value] of bidPrices) {
+    if (key.startsWith('~') && last_trade_price <= Number(key.replace('~', ''))) {
+      amount = Number(value)
+      break
+    }
+  }
+  if (!amount) {
+    res.json({message: 'usd_volume is falsy'})
+    return
+  }
+
   const volume = (amount / price).toFixed(8)
 
   const param = {
@@ -32,7 +44,7 @@ const handler = async (req, res) => {
 
   const result = await kraken.api('AddOrder', {
     pair: market,
-    type: 'buy',
+    type: body.type ?? 'buy',
     ordertype: 'limit',
     price,
     volume,

@@ -87,6 +87,40 @@ request
 }
 ```
 
+<br/>
+
+## 비트코인 가격 구간별 매수금액 설정
+
+url
+```
+POST https://buy-btc.vercel.app/api/buy-btc-diff
+```
+
+예시) 비트코인 가격이,<br/>
+3천만원 이하면 5만원치 매수<br/>
+35백만원 이하면 4만원치 매수<br/>
+40백만원 이하면 3만원치 매수<br/>
+45백만원 이하면 2만원치 매수<br/>
+해당 사항 없으면 기본 1만원치 매수<br/>
+
+request
+```json
+{
+  "accessKey": "xxx",
+  "secretKey": "xxx",
+  "body": {
+    "side": "bid",
+    "krw_volume": "10000",
+    "~30000000": "50000",
+    "~35000000": "40000",
+    "~40000000": "30000",
+    "~45000000": "20000",
+    "diff": "-10000"
+  }
+}
+```
+
+
 
 <br/>
 
@@ -134,6 +168,38 @@ request
 
 ## Ref
 https://docs.upbit.com/reference/%EC%A3%BC%EB%AC%B8%ED%95%98%EA%B8%B0
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+# 크라켄 거래소에서 자동매수
+
+endpoint
+```
+POST https://buy-btc.vercel.app/api/buy-btc-kraken
+```
+
+예시) 비트코인 가격이,<br/>
+$25k 이하면 $50 매수<br/>
+$27k 이하면 $30 매수<br/>
+해당 사항 없으면 기본 $10 매수<br/>
+(diff 는 $10 만큼 적은 금액으로 매수 주문)
+
+request payload
+```json
+{
+  "accessKey": "xxx",
+  "secretKey": "xxx",
+  "body": {
+    "usd_volume": "10",
+    "~25000": "50",
+    "~27000": "30",
+    "diff": "-10"
+  }
+}
+```
 
 
 
