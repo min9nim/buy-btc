@@ -6,15 +6,15 @@ const handler = async (req, res) => {
   const {
     accessKey,
     secretKey,
-    limit = 100,
+    limit = 500,
     page = 1,
     orderBy = 'desc',
     market = 'KRW-BTC',
     state = 'done',
   } = req.query
 
-  if(!accessKey || !secretKey){
-    res.json({message: 'accessKey & secretKey is required'})
+  if (!accessKey || !secretKey) {
+    res.json({ message: 'accessKey & secretKey is required' })
   }
 
   const result = await request({
