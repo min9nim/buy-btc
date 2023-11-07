@@ -6,7 +6,7 @@ const handler = async (req, res) => {
   const {
     accessKey,
     secretKey,
-    limit = 500,
+    limit = 200,
     page = 1,
     orderBy = 'desc',
     market = 'KRW-BTC',
