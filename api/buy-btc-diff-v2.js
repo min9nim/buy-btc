@@ -15,11 +15,18 @@ const handler = async (req, res) => {
 
   const BTC_UNIT = 100000000
   const biddingPrice = currentPrice + Number(body.diff || 0)
-  const btcVolume =
-    Math.floor((body.krw_volume / biddingPrice) * BTC_UNIT) / BTC_UNIT
 
+  let krwVolume = Number(body.krw_volume)
+  const bidPrices = Object.entries(body)
+  for ([key, value] of bidPrices) {
+    if (key.startsWith('~') && currentPrice <= Number(key.replace('~', ''))) {
+      krwVolume = Number(value)
+      break
+    }
+  }
+  const btcVolume = Math.floor((krwVolume / biddingPrice) * BTC_UNIT) / BTC_UNIT
   const param = {
-    krwVolume: Number(body.krw_volume),
+    krwVolume,
     currentPrice,
     biddingPrice,
     btcVolume,
