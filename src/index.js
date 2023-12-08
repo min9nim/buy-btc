@@ -27,7 +27,7 @@ app.post('/upbit-proxy', async (req, res) => {
   try{
     const { method, url, body, auth } = req.body
 
-    logger.log({ method, url, body, auth })
+    logger.log({ method, url, body, auth }, '\n\n')
 
     const result = await axios({
       method,
