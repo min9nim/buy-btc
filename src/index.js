@@ -24,18 +24,25 @@ app.get('/my-ip', async (req, res) => {
 })
 
 app.post('/upbit-proxy', async (req, res) => {
-  const { method, url, body, auth } = req.body
+  try{
+    const { method, url, body, auth } = req.body
 
-  logger.log({ method, url, body, auth })
+    logger.log({ method, url, body, auth })
 
-  const result = await axios({
-    method,
-    url,
-    data: body,
-    headers: auth,
-  })
+    const result = await axios({
+      method,
+      url,
+      data: body,
+      headers: auth,
+    })
 
-  res.json(result.data)
+    res.json(result.data)
+
+  }catch(e){
+    console.error(e)
+    res.json({message: e.message})
+  }
+  
 })
 
 app.listen(port, () => {
