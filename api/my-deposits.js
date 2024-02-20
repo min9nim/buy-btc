@@ -7,7 +7,6 @@ const handler = async (req, res) => {
     accessKey,
     secretKey,
     limit = 100,
-    page = 1,
     orderBy = 'desc',
     currency = 'KRW',
   } = req.query
@@ -16,18 +15,36 @@ const handler = async (req, res) => {
     res.json({ message: 'accessKey & secretKey is required' })
   }
 
-  const result = await request({
-    method: 'get',
-    path: '/v1/deposits',
-    body: {
-      currency,
-      page,
-      limit,
-      order_by: orderBy,
-    },
-    accessKey,
-    secretKey,
-  })
+  const [result1, result2] = await Promise.all([
+    request({
+      method: 'get',
+      path: '/v1/deposits',
+      body: {
+        currency,
+        page: 1,
+        limit,
+        order_by: orderBy,
+      },
+      accessKey,
+      secretKey,
+    }),
+    request({
+      method: 'get',
+      path: '/v1/deposits',
+      body: {
+        currency,
+        page: 2,
+        limit,
+        order_by: orderBy,
+      },
+      accessKey,
+      secretKey,
+    }),
+  ])
+
+  console.log({ res1Length: result1.length, res2Length: result2.length })
+
+  const result = [...result2, ...result1]
 
   const total_amount = result
     .filter(item => item.state === 'ACCEPTED')
