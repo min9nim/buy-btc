@@ -1,15 +1,12 @@
 const allowCors = require('../src/utils/cors')
-const request = require('../src/utils/req')
+const request = require('../src/utils/req-v2')
 const handleError = require('../src/utils/handle-error')
 
 const handler = async (req, res) => {
-  const {
-    accessKey,
-    secretKey,
-  } = req.query
+  const { accessKey, secretKey } = req.query
 
-  if(!accessKey || !secretKey){
-    res.json({message: 'accessKey & secretKey is required'})
+  if (!accessKey || !secretKey) {
+    res.json({ message: 'accessKey & secretKey is required' })
   }
 
   const result = await request({
