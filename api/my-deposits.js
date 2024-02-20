@@ -1,6 +1,6 @@
 const allowCors = require('../src/utils/cors')
 const handleError = require('../src/utils/handle-error')
-const request = require('../src/utils/req')
+const request = require('../src/utils/req-v2')
 
 const handler = async (req, res) => {
   const {
