@@ -213,6 +213,35 @@ request payload
 }
 ```
 
+# 크라켄 usdt 로 매수
+
+endpoint
+
+```
+POST https://buy-btc.vercel.app/api/buy-btc-kraken-usdt
+```
+
+예시) 비트코인 가격이,<br/>
+$25k 이하면 $50 매수<br/>
+$27k 이하면 $30 매수<br/>
+해당 사항 없으면 기본 $10 매수<br/>
+(diff 는 $10 만큼 적은 금액으로 매수 주문)
+
+request payload
+
+```json
+{
+  "accessKey": "xxx",
+  "secretKey": "xxx",
+  "body": {
+    "usd_volume": "10",
+    "~25000": "50",
+    "~27000": "30",
+    "diff": "-10"
+  }
+}
+```
+
 ## 23년 11월 6일 업데이트
 
 기존 proxy 서버 호스팅이 23.11.17 부터 계약 종료됨에 따라 기존 서버(`61.111.254.203`)는 더 이상 사용이 불가합니다.
