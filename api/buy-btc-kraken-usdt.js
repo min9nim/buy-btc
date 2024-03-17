@@ -10,10 +10,10 @@ const handler = async (req, res) => {
 
   const diff = Number(body.diff)
   let amount = Number(body.usd_volume)
-  const market = body.market || 'XXBTUSDT'
+  const market = body.market || 'XBTUSDT'
 
   const last_trade_price = await kraken
-    .api('Ticker', { pair: 'XXBTUSDT' })
+    .api('Ticker', { pair: 'XBTUSDT' })
     .then(res => res.result.XXBTUSDT.c[0])
 
   const price = (Number(last_trade_price) + diff || 0).toFixed(2)
