@@ -14,7 +14,7 @@ const handler = async (req, res) => {
 
   const last_trade_price = await kraken
     .api('Ticker', { pair: 'XBTUSDT' })
-    .then(res => res.result.XXBTUSDT.c[0])
+    .then(res => res.result.XBTUSDT.c[0])
 
   const price = (Number(last_trade_price) + diff || 0).toFixed(2)
   const bidPrices = Object.entries(body)
