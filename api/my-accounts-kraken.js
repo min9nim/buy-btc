@@ -1,6 +1,6 @@
 const allowCors = require('../src/utils/cors')
-const request = require('../src/utils/req-v2')
 const handleError = require('../src/utils/handle-error')
+const KrakenClient = require('kraken-api')
 
 const handler = async (req, res) => {
   const { accessKey, secretKey } =
