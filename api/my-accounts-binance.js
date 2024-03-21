@@ -24,6 +24,7 @@ const handler = async (req, res) => {
       const timestamp = Date.now()
       const queryString = `timestamp=${timestamp}`
       const signature = createSignature(queryString, API_SECRET)
+      console.log(22, signature)
       const response = await axios.get(
         'https://api.binance.com/api/v3/account',
         {
@@ -36,32 +37,16 @@ const handler = async (req, res) => {
           },
         },
       )
+
       return response.data
     } catch (error) {
       throw new Error(`Error getting account information: ${error.message}`)
     }
   }
 
-  // Function to get BTC balance
-  async function getBTCBalance() {
-    try {
-      const accountInfo = await getAccountInfo()
-      const balances = accountInfo.balances
-      const btcBalance = balances.find(asset => asset.asset === 'BTC')
-      if (btcBalance) {
-        return btcBalance.free
-      } else {
-        return '0' // If no BTC balance found, return 0
-      }
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
+  const result = await getAccountInfo()
 
-  // Usage
-  const balance = await getBTCBalance()
-
-  res.json({ balance })
+  res.json(result)
 }
 
 module.exports = allowCors(handleError(handler))
