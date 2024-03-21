@@ -6,11 +6,16 @@ const handler = async (req, res) => {
   const { accessKey, secretKey } = req.query
 
   const xcoinAPI = new XCoinAPI(accessKey, secretKey)
-  const result = await xcoinAPI.xcoinApiCall('/info/balance', {
-    currency: 'ALL',
-  })
+  const [btc, krw] = await Promise.all([
+    xcoinAPI.xcoinApiCall('/info/balance', {
+      currency: 'BTC',
+    }),
+    xcoinAPI.xcoinApiCall('/info/balance', {
+      currency: 'KRW',
+    }),
+  ])
 
-  res.json(JSON.parse(result.body))
+  res.json({ btc: JSON.parse(btc.body), krw: JSON.parse(krw.body) })
 }
 
 module.exports = allowCors(handleError(handler))
