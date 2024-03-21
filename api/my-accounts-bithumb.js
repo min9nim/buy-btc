@@ -12,7 +12,7 @@ const handler = async (req, res) => {
   }
   const result = await xcoinAPI.xcoinApiCall('/info/account', rgParams)
 
-  res.json(result.body)
+  res.json(JSON.parse(result.body))
 }
 
 module.exports = allowCors(handleError(handler))
