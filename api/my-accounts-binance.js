@@ -26,7 +26,7 @@ const handler = async (req, res) => {
       const signature = createSignature(queryString, API_SECRET)
       console.log(22, signature)
       const response = await axios.get(
-        'https://data.binance.com/api/v3/account',
+        'https://api.binance.com/api/v3/account',
         {
           headers: {
             'X-MBX-APIKEY': API_KEY,
@@ -46,7 +46,7 @@ const handler = async (req, res) => {
 
   const result = await getAccountInfo()
 
-  res.send(result)
+  res.json(result)
 }
 
 module.exports = allowCors(handleError(handler))
