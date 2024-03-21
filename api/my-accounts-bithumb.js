@@ -7,10 +7,9 @@ const handler = async (req, res) => {
 
   const xcoinAPI = new XCoinAPI(accessKey, secretKey)
   const rgParams = {
-    order_currency: 'BTC',
-    payment_currency: 'KRW',
+    currency: 'ALL',
   }
-  const result = await xcoinAPI.xcoinApiCall('/info/account', rgParams)
+  const result = await xcoinAPI.xcoinApiCall('/info/balance', rgParams)
 
   res.json(JSON.parse(result.body))
 }
