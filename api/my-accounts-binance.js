@@ -24,7 +24,6 @@ const handler = async (req, res) => {
       const timestamp = Date.now()
       const queryString = `timestamp=${timestamp}`
       const signature = createSignature(queryString, API_SECRET)
-      console.log(22, signature)
       const response = await axios.get(
         'https://api.binance.com/api/v3/account',
         {
@@ -46,7 +45,11 @@ const handler = async (req, res) => {
 
   const result = await getAccountInfo()
 
-  res.json(result)
+  const ip = await axios
+    .get('https://echo-api.vercel.app/api/')
+    .then(res => res.data.headers['x-real-ip'])
+
+  res.json({ result, remoteIp: ip })
 }
 
 module.exports = allowCors(handleError(handler))
