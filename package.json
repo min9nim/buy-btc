@@ -9,6 +9,8 @@
     "start:local": "node src/index.js"
   },
   "dependencies": {
+    "crypto-js": "^4.1.1",
+    "request": "^2.88.2",
     "axios": "^0.24.0",
     "crypto": "^1.0.1",
     "dayjs": "^1.11.10",
