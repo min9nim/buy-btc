@@ -6,10 +6,9 @@ const handler = async (req, res) => {
   const { accessKey, secretKey } = req.query
 
   const xcoinAPI = new XCoinAPI(accessKey, secretKey)
-  const rgParams = {
+  const result = await xcoinAPI.xcoinApiCall('/info/balance', {
     currency: 'ALL',
-  }
-  const result = await xcoinAPI.xcoinApiCall('/info/balance', rgParams)
+  })
 
   res.json(JSON.parse(result.body))
 }
