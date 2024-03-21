@@ -26,7 +26,7 @@ const handler = async (req, res) => {
       const signature = createSignature(queryString, API_SECRET)
       console.log(22, signature)
       const response = await axios.get(
-        'https://api.binance.com/api/v3/account',
+        'https://data.binance.com/api/v3/account',
         {
           headers: {
             'X-MBX-APIKEY': API_KEY,
