@@ -10,9 +10,9 @@ const handler = async (req, res) => {
     order_currency: 'BTC',
     payment_currency: 'KRW',
   }
-  const res = await xcoinAPI.xcoinApiCall('/info/account', rgParams)
+  const result = await xcoinAPI.xcoinApiCall('/info/account', rgParams)
 
-  res.json(res.body)
+  res.json(result.body)
 }
 
 module.exports = allowCors(handleError(handler))
