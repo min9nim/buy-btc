@@ -46,7 +46,7 @@ const handler = async (req, res) => {
 
   const result = await getAccountInfo()
 
-  res.json(result)
+  res.send(result)
 }
 
 module.exports = allowCors(handleError(handler))
