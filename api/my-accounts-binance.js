@@ -39,17 +39,16 @@ const handler = async (req, res) => {
 
       return response.data
     } catch (error) {
-      throw new Error(`Error getting account information: ${error.message}`)
+      const ip = await axios
+        .get('https://echo-api.vercel.app/api/')
+        .then(res => res.data.headers['x-real-ip'])
+      throw new Error(`${ip}: ${error.message}`)
     }
   }
 
   const result = await getAccountInfo()
 
-  const ip = await axios
-    .get('https://echo-api.vercel.app/api/')
-    .then(res => res.data.headers['x-real-ip'])
-
-  res.json({ result, remoteIp: ip })
+  res.json(result)
 }
 
 module.exports = allowCors(handleError(handler))
