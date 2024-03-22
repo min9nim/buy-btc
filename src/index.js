@@ -1,6 +1,7 @@
 const express = require('express')
 const axios = require('axios')
 const bodyParser = require('body-parser')
+const getBinanceBalances = require('./utils/get-binance-balances')
 
 const { default: createLogger, simpleFormat } = require('if-logger')
 const dayjs = require('dayjs')
@@ -21,6 +22,12 @@ app.get('/my-ip', async (req, res) => {
     url: 'https://echo-api.vercel.app/api',
   })
   res.json(result.data)
+})
+
+app.get('/my-accounts-binance', async (req, res) => {
+  const { accessKey, secretKey } = req.query
+  const result = await getBinanceBalances(accessKey, secretKey)
+  res.json(result)
 })
 
 app.post('/upbit-proxy', async (req, res) => {

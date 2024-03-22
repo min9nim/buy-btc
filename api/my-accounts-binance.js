@@ -1,6 +1,6 @@
 const allowCors = require('../src/utils/cors')
 const handleError = require('../src/utils/handle-error')
-const getBinanceBalances = require('../src/utils/binance-balances')
+const getBinanceBalances = require('../src/utils/get-binance-balances')
 
 const handler = async (req, res) => {
   const { accessKey, secretKey } = req.query
