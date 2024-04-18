@@ -82,7 +82,7 @@ app.post('/upbit-proxy', async (req, res) => {
   try {
     const { method, url, body, auth } = req.body
 
-    logger.log({ method, url, body, auth }, '\n\n')
+    // logger.log({ method, url, body, auth }, '\n\n')
 
     const option = {
       method,
@@ -90,7 +90,7 @@ app.post('/upbit-proxy', async (req, res) => {
       ...(method === 'get' ? { params: body } : { data: body }),
       headers: auth,
     }
-    console.log('axios option: ', option)
+    // console.log('axios option: ', option)
     const result = await axios(option)
 
     res.json(result.data)
