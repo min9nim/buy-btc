@@ -70,7 +70,7 @@ app.get('/lnp2p-webhook', async (req, res) => {
     return res.status(400).json({ message: `No amountSats` })
   }
 
-  const result = await buyBtc(Number(query.amountSats), {
+  const result = await buyBtc(Number(amountSats), {
     apiKey,
     apiSecret,
   })
