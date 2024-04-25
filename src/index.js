@@ -95,10 +95,11 @@ app.post('/upbit-proxy', async (req, res) => {
 
     res.json(result.data)
   } catch (e) {
-    console.log(
+    logger.verbose(
       e.message,
-      e.config.headers.Authorization,
       e.response.config.data,
+      e.config.headers.Authorization,
+      '\n',
     )
     res.json({ message: e.message })
   }
