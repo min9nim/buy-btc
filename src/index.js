@@ -51,12 +51,13 @@ app.get('/lnp2p-webhook', async (req, res) => {
         quantity: String(quantity),
       })
       .then(order => {
-        console.log('주문이 완료되었습니다.')
-        console.log(order)
+        logger.info('\n[lnp2p-stimpack] success', order)
+        // console.log(order)
         return order
       })
       .catch(err => {
-        console.error('주문을 처리하는 중 오류가 발생했습니다:', err)
+        logger.error('\n[lnp2p-stimpack] failed', err)
+        // console.error(err)
         return { message: err.message }
       })
   }
