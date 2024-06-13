@@ -31,37 +31,37 @@ app.get('/my-accounts-binance', async (req, res) => {
   res.json(result)
 })
 
-app.get('/lnp2p-webhook', async (req, res) => {
-  const buyBtc = (amountSats, { apiKey, apiSecret }) => {
-    // 바이낸스 API 키 및 시크릿 키 설정
-    const client = Binance({
-      apiKey,
-      apiSecret,
+const buyBtc = (amountSats, { apiKey, apiSecret }) => {
+  // 바이낸스 API 키 및 시크릿 키 설정
+  const client = Binance({
+    apiKey,
+    apiSecret,
+  })
+
+  // BTC/USDT 마켓에서 비트코인을 구매할 수량 설정
+  const quantity = amountSats / 100_000_000 // 비트코인을 구매할 양
+
+  // 주문 생성
+  return client
+    .order({
+      symbol: 'BTCUSDT',
+      side: 'BUY',
+      type: 'MARKET', // 시장가 주문
+      quantity: String(quantity),
     })
+    .then(order => {
+      logger.info('\n[lnp2p-stimpack] success', order)
+      // console.log(order)
+      return order
+    })
+    .catch(err => {
+      logger.error('\n[lnp2p-stimpack] failed', err)
+      // console.error(err)
+      return { message: err.message }
+    })
+}
 
-    // BTC/USDT 마켓에서 비트코인을 구매할 수량 설정
-    const quantity = amountSats / 100_000_000 // 비트코인을 구매할 양
-
-    // 주문 생성
-    return client
-      .order({
-        symbol: 'BTCUSDT',
-        side: 'BUY',
-        type: 'MARKET', // 시장가 주문
-        quantity: String(quantity),
-      })
-      .then(order => {
-        logger.info('\n[lnp2p-stimpack] success', order)
-        // console.log(order)
-        return order
-      })
-      .catch(err => {
-        logger.error('\n[lnp2p-stimpack] failed', err)
-        // console.error(err)
-        return { message: err.message }
-      })
-  }
-
+app.get('/lnp2p-webhook', async (req, res) => {
   const { amountSats, apiKey, apiSecret } = req.query
 
   if (!apiKey || !apiSecret) {
@@ -80,36 +80,6 @@ app.get('/lnp2p-webhook', async (req, res) => {
 })
 
 app.get('/binance', async (req, res) => {
-  const buyBtc = (amountSats, { apiKey, apiSecret }) => {
-    // 바이낸스 API 키 및 시크릿 키 설정
-    const client = Binance({
-      apiKey,
-      apiSecret,
-    })
-
-    // BTC/USDT 마켓에서 비트코인을 구매할 수량 설정
-    const quantity = amountSats / 100_000_000 // 비트코인을 구매할 양
-
-    // 주문 생성
-    return client
-      .order({
-        symbol: 'BTCUSDT',
-        side: 'BUY',
-        type: 'MARKET', // 시장가 주문
-        quantity: String(quantity),
-      })
-      .then(order => {
-        logger.info('\n[lnp2p-stimpack] success', order)
-        // console.log(order)
-        return order
-      })
-      .catch(err => {
-        logger.error('\n[lnp2p-stimpack] failed', err)
-        // console.error(err)
-        return { message: err.message }
-      })
-  }
-
   const { amountUsd, apiKey, apiSecret } = req.query
 
   if (!apiKey || !apiSecret) {
