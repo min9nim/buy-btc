@@ -79,6 +79,62 @@ app.get('/lnp2p-webhook', async (req, res) => {
   res.json(result)
 })
 
+app.get('/binance', async (req, res) => {
+  const buyBtc = (amountSats, { apiKey, apiSecret }) => {
+    // 바이낸스 API 키 및 시크릿 키 설정
+    const client = Binance({
+      apiKey,
+      apiSecret,
+    })
+
+    // BTC/USDT 마켓에서 비트코인을 구매할 수량 설정
+    const quantity = amountSats / 100_000_000 // 비트코인을 구매할 양
+
+    // 주문 생성
+    return client
+      .order({
+        symbol: 'BTCUSDT',
+        side: 'BUY',
+        type: 'MARKET', // 시장가 주문
+        quantity: String(quantity),
+      })
+      .then(order => {
+        logger.info('\n[lnp2p-stimpack] success', order)
+        // console.log(order)
+        return order
+      })
+      .catch(err => {
+        logger.error('\n[lnp2p-stimpack] failed', err)
+        // console.error(err)
+        return { message: err.message }
+      })
+  }
+
+  const { amountUsd, apiKey, apiSecret } = req.query
+
+  if (!apiKey || !apiSecret) {
+    return res.status(400).json({ message: `No api-key` })
+  }
+  if (!amountSats) {
+    return res.status(400).json({ message: `No amountSats` })
+  }
+
+  const {
+    data: { price },
+  } = await axios.get(
+    `https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT`,
+  )
+
+  const amountSats = Math.floor(amountUsd * (100_000_000 / Number(price)))
+
+  const result = await buyBtc(amountSats - (amountSats % 1000), {
+    apiKey,
+    apiSecret,
+  })
+
+  res.json(result)
+})
+
 app.post('/upbit-proxy', async (req, res) => {
   try {
     const { method, url, body, auth } = req.body
