@@ -85,8 +85,8 @@ app.get('/binance', async (req, res) => {
   if (!apiKey || !apiSecret) {
     return res.status(400).json({ message: `No api-key` })
   }
-  if (!amountSats) {
-    return res.status(400).json({ message: `No amountSats` })
+  if (!amountUsd) {
+    return res.status(400).json({ message: `No amountUsd` })
   }
 
   const {
@@ -95,7 +95,9 @@ app.get('/binance', async (req, res) => {
     `https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT`,
   )
 
-  const amountSats = Math.floor(amountUsd * (100_000_000 / Number(price)))
+  const amountSats = Math.floor(
+    Number(amountUsd) * (100_000_000 / Number(price)),
+  )
 
   const result = await buyBtc(amountSats - (amountSats % 1000), {
     apiKey,
